@@ -1,0 +1,141 @@
+﻿.player123 {
+    height: 100%;
+    border-radius: 35px;
+    margin: 0 0;
+    display: block;
+    padding: 5px;
+    color:#fff;
+    padding-top: 20px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.indicator {
+    font-size: 10px;
+}
+
+.small,
+.big,
+.big_play_pause {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background: radial-gradient(at bottom right, #FFD700 0%, #fadf4d 80%);
+    border: none;
+    box-shadow: -7px -6px 10px 5px rgba(255, 255, 255, 0.04), 6px 6px 10px 5px rgb(39, 42, 47);
+    padding: 0;
+}
+
+.big,
+.big_play_pause {
+    height: 60px;
+    width: 60px;
+    box-shadow: -7px -6px 10px 5px rgba(255, 255, 255, 0.04), 7px 6px 10px 2px rgb(14, 15, 16);
+    background: radial-gradient(at bottom right, #17191e 0%, #1d2025 80%);
+}
+
+.big_play_pause {
+    background: var(--primary-color)
+}
+
+.inner_button,
+.center,
+.inner_button_big,
+.playpause {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    background: var(--primary-color);
+    margin: 0 auto;
+    border: none;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    /* align-self: center; */
+    align-items: center;
+}
+
+.inner_button_big {
+    height: 55px;
+    width: 55px;
+    background: radial-gradient( at top left, rgb(57, 59, 64) 0%, rgb(12, 13, 16) 112% );
+}
+
+.playpause {
+    background: var(--primary-color);
+    height: 55px;
+    width: 55px;
+}
+
+.small:active {
+    transform: translateY(2px);
+    background: radial-gradient(at top left, #292e35 0%, #292e34 80%);
+}
+
+.inner_button:active {
+    background: radial-gradient( at bottom right, rgba(46, 50, 58, 1) 0%, rgba(28, 30, 35, 1) 80% );
+}
+
+.big_play_pause:active {
+    transform: translateY(4px);
+    background: radial-gradient(at bottom right, #FFD700 0%, #fadf4d 80%);
+}
+
+.playpause:active {
+    background: radial-gradient(at bottom right, #FFD700 0%, #fadf4d 80%);
+}
+
+.big:active {
+    transform: translateY(4px);
+    background: radial-gradient(at top left, #17191e 0%, #1d2025 80%);
+}
+
+.inner_button_big:active {
+    background: radial-gradient( at bottom right, rgb(57, 59, 64) 0%, rgb(12, 13, 16) 112% );
+}
+
+
+.center {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1/1;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: var(--primary-color);
+}
+
+.album {
+    border-radius: 50%;
+    height: calc(100% - 6px);
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.song_details {
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 30px 0px 30px;
+}
+
+.slider {
+    width: 90%;
+}
+
+
+
+
+
+.time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 0px;
+}

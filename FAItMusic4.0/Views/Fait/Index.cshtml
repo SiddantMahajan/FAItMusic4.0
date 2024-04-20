@@ -1,0 +1,1062 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/css/player.css">
+    <link rel="stylesheet" href="~/Content/css/style1.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="~/Content/img/Designer (1).png" />
+    <title>FAIt Music</title>
+    <style>
+        .controlBtn {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.10s ease-in-out;
+            padding:0;
+            height:60px;
+            width:60px;
+        }
+
+        .controlBtn:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .controlBtn:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <img src="~/Content/img/Designer (1).png" class="icon" width="40"/>
+            <div class="logo_name">FAIt Music</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <a href="#">
+                    <i class='bx bx-home-alt'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a onclick="Authenticate();">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Log In</span>
+                </a>
+                <span class="tooltip">Log In</span>
+            </li>
+            <li>
+                <a href="#">
+                    <center><i class='bx bxl-facebook'></i></center>
+                    <span class="links_name">Facebook</span>
+                </a>
+                <span class="tooltip">Facebook</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-instagram'></i>
+                    <span class="links_name">Instagram</span>
+                </a>
+                <span class="tooltip">Instagram</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-snapchat'></i>
+                    <span class="links_name">Snapchat</span>
+                </a>
+                <span class="tooltip">Snapchat</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-linkedin'></i>
+                    <span class="links_name">Linked In</span>
+                </a>
+                <span class="tooltip">Linked In</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-github'></i>
+                    <span class="links_name">Github</span>
+                </a>
+                <span class="tooltip">Github</span>
+            </li>
+        </ul>
+        <div id="player"></div>
+    </div>
+
+    <section class="home-section">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-lg-9 row1">
+
+                        <div class="row">
+
+                            <div class="col-lg-12 topmost">
+
+                                <div class="row" style="margin: 0; height: 100%;">
+
+                                    <div class="col-lg-4" style="padding: 0;">
+
+                                        <div class="container-fluid scontainer flex" style="transform: translateX(-11px);">
+                                            <form id="searchForm" style="display: contents; ">
+                                                <input type="text" placeholder="Search" id="searchTerm" class="searchBox" autocomplete="off"><button type="submit" class="searchButton"><i class='bx bx-search-alt icon'></i></button>
+                                            </form>
+                                            
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4 offset-lg-4 info" style="height: 100%;">
+                                        <div class="dpContainer flex">
+                                            <div class="pimgContainer">
+                                                <img class="dp" id="dp" src="~/Content/img/Designer (1).png">
+                                            </div>
+                                            <p class="userName" id="name">UserName</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12 top">
+
+                                <div class="container-fluid topContainer">
+                                    <div class="subList123">
+                                        <ul class="pListContainer" id="popularPlaylist">
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12 mid">
+
+                                <div class="container-fluid midContainer">
+                                    <div class="subList123">
+                                        <ul class="sublist" id="subscriptions">
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12 btm">
+
+                                <div class="container-fluid btmContainer">
+                                    <div class="tabcontainer">
+                                        <div class="tabs" id="playlistTabs">
+                                            <div class="tabby-tab"><input type="radio" id="tab-69" name="tabby-tabs"><label for="tab-69">Search Results</label><div class="tabby-content"><div class="listContainer" style="overflow-y: scroll; height: 100%;margin-top:20px;"><ul class="songList" id="searchResults"></ul></div></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 row2" style="padding: 0;">
+
+                        <div class="col-lg-12 list">
+
+                            <div class="container-fluid listContainer">
+                                <div class="tbl-header">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"><center>Recently Played</center></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="tbl-content">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tbody id="recentActivity">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12 player">
+
+                            <div class="container-fluid playerContainer">
+                                <div class="player123">
+
+                                    <div class="container" style="height: 36%;">
+                                        <div class="center">
+                                            <img class="album" src="~/Content/img/Designer (1).png" id="thumbnail">
+                                        </div>
+                                    </div>
+
+                                    <div class="container" style="height: 25%; display: flex; justify-content: center; text-align: center; align-items: center;">
+                                        <div class="song_details">
+                                            <div style="font-size: 2vh;" id="title">No Song<br />Playing</div>
+                                            <div style="margin-top: 7px; font-size: 2vh; " id="channel">---</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container" style="height:35%; display: flex; justify-content: center; text-align: center; align-items: center;">
+                                        <div class="slider">
+                                            <div class="time">
+                                                <div id="currentTime">0:00</div>
+                                                <div id="totalDuration">0:00</div>
+                                            </div>
+                                            <input type="range" min="0" max="100" value="0" step="1" class="slider123" id="seekSlider" />
+
+                                            <div class="controls">
+
+                                                <button class="controlBtn" id="prevButton" onclick="playPreviousVideo()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M20.24 7.22v9.57c0 1.96-2.13 3.19-3.83 2.21l-4.15-2.39-4.15-2.4c-1.7-.98-1.7-3.43 0-4.41l4.15-2.4 4.15-2.39c1.7-.98 3.83.24 3.83 2.21ZM3.76 18.18V5.82" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                </button>
+
+                                                <button class="controlBtn" id="playPauseButton" style="background-color: #467d91;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2.0" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                </button>
+
+                                                <button class="controlBtn" id="nextButton" onclick="playNextVideo()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3.76 7.22v9.57c0 1.96 2.13 3.19 3.83 2.21l4.15-2.39 4.15-2.4c1.7-.98 1.7-3.43 0-4.41l-4.15-2.4-4.15-2.39c-1.7-.98-3.83.24-3.83 2.21ZM20.24 18.18V5.82" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="~/Content/js/script1.js"></script>
+
+    <script>
+
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+
+        
+
+
+        const input = document.getElementById("volumeSlider");
+        for (const event of ["input", "change"])
+            input.addEventListener(event, (e) => update(e.target));
+
+        function update(input) {
+            for (const data of ["min", "max", "value"])
+                if (input[data]) input.style.setProperty(`--${data}`, input[data]);
+        }
+
+        update(input);
+        var volumeSlider;
+
+        function onYouTubeIframeAPIReady() {
+            volumeSlider = document.getElementById('volumeSlider');
+            volumeSlider.addEventListener('input', function () {
+                var volume = volumeSlider.value;
+                setVolume(volume);
+            });
+        }
+
+        function setVolume(volume) {
+            if (player) {
+                player.setVolume(volume);
+            }
+        }
+    </script>
+
+
+    <script>
+        var card1 = document.getElementsByClassName('sublist')[0]; // Access the first element in the collection
+        var card2Ele = document.getElementsByClassName('card2');
+
+        // Convert the width string to a number and double it
+        var newWidth = ((card1.getBoundingClientRect().height - 20) * 2 + 10);
+
+        for (var i = 0; i < card2Ele.length; i++) {
+            card2Ele[i].style.width = newWidth + 'px';
+        }
+    </script>
+
+
+
+
+
+
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+
+    <script>
+        const input = document.getElementById("volumeSlider");
+        for (const event of ["input", "change"])
+            input.addEventListener(event, (e) => update(e.target));
+
+        function update(input) {
+            for (const data of ["min", "max", "value"])
+                if (input[data]) input.style.setProperty(`--${data}`, input[data]);
+        }
+
+        update(input);
+
+    </script>
+
+    <script>
+        var player;
+        var playPauseButton;
+        var seekSlider;
+        var currentTimeDisplay;
+        var totalDurationDisplay;
+        var playlist = []; // Global variable to store playlist items
+        var currentVideoIndex; // Global variable to keep track of the current video index
+        var currentVideoID;
+        var currentActivity = [];
+        var currentActivityIndex = 0;
+
+
+
+        function pl(vdoid) {
+            var youtubeUrl = vdoid;
+
+            $.ajax({
+                url: '/Fait/PlayMusicAsync',
+                type: 'POST',
+                dataType: 'json',
+                data: { youtubeUrl: youtubeUrl },
+                success: function (response) {
+                    // Success handling code
+                    $('#thumbnail').attr('src', response.highQualityThumbnailUrl);
+                    $('#title').html(response.videoTitle);
+                    $('#Des').html(response.videoDesc);
+                    $('#channel').html(response.videoChannel);
+                    currentVideoID = response.videoUrl;
+                    loadYoutubePlayer(currentVideoID);
+                    addCurrentActivity(currentVideoID, response.highQualityThumbnailUrl, response.videoTitle);
+                    currentVideoIndex = getCurrentVideoIndex(currentVideoID);
+                    console.log(currentVideoIndex);
+                    //scroll();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // Error handling code
+                    console.error("AJAX Error:", textStatus, errorThrown);
+                    // Optionally, you can display an error message to the user or take other actions.
+                }
+            });
+        }
+
+
+
+        $(document).ready(function () { // Fetch playlist data and store it in the global variable
+            if (!localStorage.getItem('accessToken')) {
+                Authenticate();
+                alert('authenticated');
+                
+                fetchSubscriptions(localStorage.getItem('accessToken'));
+
+
+            }
+            else {
+                alert('Already Done');
+            }
+            getUserInfo123(localStorage.getItem('accessToken'));
+        });
+
+
+        function getCurrentVideoIndex(vidoId) {
+            for (var i = 0; i < playlist.length; i++) {
+                if (playlist[i].VideoId === vidoId) {
+                    return i; // Return the index of the current video
+                }
+            }
+            return -1; // Return -1 if the video is not found in the
+        }
+
+
+
+
+        function loadYoutubePlayer(videoId) {
+            try {
+                if (player) {
+                    player.loadVideoById(videoId);
+                } else {
+                    player = new YT.Player('player', {
+                        height: '0',
+                        width: '0',
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 1,
+                            controls: 1
+                        },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading YouTube player:', error);
+                // You can handle the error here, such as showing a message to the user or logging it.
+            }
+        }
+
+
+        /*function scroll() {
+            $('#test').html('<a id="scrollLink" href="#plitem' + currentVideoIndex + '">Scroll</a>');
+            var link = document.getElementById('scrollLink');
+            link.click();
+        }*/
+
+
+
+        function onPlayerReady(event) {
+            playPauseButton = document.getElementById('playPauseButton');
+            seekSlider = document.getElementById('seekSlider');
+            currentTimeDisplay = document.getElementById('currentTime');
+            totalDurationDisplay = document.getElementById('totalDuration');
+
+            playPauseButton.style.visibility = 'visible';
+            playPauseButton.addEventListener('click', function () {
+                if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            });
+
+            seekSlider.addEventListener('input', function () {
+                var seekToTime = seekSlider.value;
+                player.seekTo(seekToTime, true);
+            });
+
+            var totalDuration = player.getDuration();
+            totalDurationDisplay.textContent = formatTime(totalDuration);
+            seekSlider.max = totalDuration;
+
+            setInterval(function () {
+                var currentTime = player.getCurrentTime();
+                currentTimeDisplay.textContent = formatTime(currentTime);
+                seekSlider.value = currentTime;
+            }, 1000); // Update every second
+        }
+
+
+
+
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="27" height="27" viewBox="0 0 24 24" fill="none"><path d="M10.65 19.11V4.89c0-1.35-.57-1.89-2.01-1.89H5.01C3.57 3 3 3.54 3 4.89v14.22C3 20.46 3.57 21 5.01 21h3.63c1.44 0 2.01-.54 2.01-1.89ZM21 19.11V4.89C21 3.54 20.43 3 18.99 3h-3.63c-1.43 0-2.01.54-2.01 1.89v14.22c0 1.35.57 1.89 2.01 1.89h3.63c1.44 0 2.01-.54 2.01-1.89Z" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(2px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2.0" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+            }
+
+            if (event.data == YT.PlayerState.PLAYING) {
+                var totalDuration = player.getDuration();
+                totalDurationDisplay.textContent = formatTime(totalDuration);
+                seekSlider.max = totalDuration;
+            }
+
+            if (event.data == YT.PlayerState.ENDED) {
+                playNextVideo();
+            }
+        }
+
+
+
+
+        function formatTime(seconds) {
+            var minutes = Math.floor(seconds / 60);
+            var seconds = Math.floor(seconds % 60);
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            return minutes + ':' + seconds;
+        }
+    </script>
+
+    <!----------------------------search----------------------------->
+
+    <script>
+
+
+
+    $(document).ready(function () {
+        $('#searchForm').submit(function (event) {
+            event.preventDefault(); // Prevent form submission
+            var searchTerm = $('#searchTerm').val(); // Get the search term from the input field
+            $('#searchResults').html('<br><br><div class="spinner"><div></div><div></div><div></div><div></div><div></div></div>');
+            searchVideos(searchTerm); // Call the function to search videos
+        });
+
+
+
+
+        function searchVideos(searchTerm) {
+            $.ajax({
+                url: '@Url.Action("SearchVDO", "Fait")', // Replace 'ControllerName' with your actual controller name
+                type: 'POST',
+                data: { searchTerm: searchTerm }, // Pass the search term to the controller action
+                dataType: 'json', // Expect JSON data in response
+                success: function (data) {
+                displaySearchResults(data); // Call function to display search results
+            },
+
+            error: function () {
+                $('#searchResults').html('Failed to retrieve search results.'); // Display an error message if the request fails
+            }
+        });
+    }
+
+
+
+
+        function displaySearchResults(data) {
+            var x = 0;
+            $('#searchResults').empty(); // Clear previous search results
+            $.each(data, function (index, item) {
+                var videoUrl = item.videoUrl;
+                var videoTitle = item.videoTitle;
+                var videoChannel = item.videoChannel;
+                var videoThumbnail = item.videoThumbnail;
+                var videoID = item.videoID;
+                // Construct HTML markup for each search result
+                var resultHtml = '<li id="seitem' + x + '"><div class="article-card"><div class="content"><p class="title">' + videoTitle + '</p><div class="d-flex"><p class="date">' + videoChannel + '</p><button data-url="' + videoUrl + '" data-index="' + x + '" class="playCard"><svg xmlns="http://www.w3.org/2000/svg" style="transform:translateY(-1px); height:100%;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div><div class="image-container"><img src="' + videoThumbnail +'" alt="article-cover" /><div class="image-tint"></div></div></div></li>';
+            // Append the HTML markup to the search results container
+                $('#searchResults').append(resultHtml);
+                x++;
+        });
+    }
+    });
+
+
+
+
+
+        $('#searchResults').on('click', '.playCard', function () {
+            // Remove 'clicked' class from all buttons
+            $('.searchitem').removeClass('active1');
+            $('.playlistitem').removeClass('active1');
+
+            // Add 'clicked' class to the clicked button
+            var parent = $(this).parent().parent();
+            parent.addClass('active1');
+            // Get the video URL from the clicked button's data attribute and call pl function
+            var videoUrl = $(this).data('url');
+            pl(videoUrl);
+        });
+
+
+
+    function playPreviousVideo() {
+        currentVideoIndex = getCurrentVideoIndex(currentVideoID);
+        if (currentVideoIndex > 0) {
+            currentVideoIndex--;
+            var prevVideoId = playlist[currentVideoIndex].VideoId;
+            updateUI(currentVideoIndex);
+            pl('https://www.youtube.com/watch?v=' + prevVideoId); // Call the function to play the previous video
+        }
+    }
+
+
+
+
+    function playNextVideo() {
+        currentVideoIndex = getCurrentVideoIndex(currentVideoID);
+        if (currentVideoIndex < playlist.length - 1 && currentVideoIndex != -1) {
+            currentVideoIndex++;
+            var nextVideoId = playlist[currentVideoIndex].VideoId;
+            updateUI(currentVideoIndex);
+            pl('https://www.youtube.com/watch?v=' + nextVideoId); // Call the function to play the next video
+        }
+    }
+
+
+
+
+// Disable previous button when at the beginning of the playlist
+    function togglePrevButton() {
+        $("#prevButton").prop("disabled", currentVideoIndex <= 0);
+    }
+
+
+
+// Disable next button when at the end of the playlist
+    function toggleNextButton() {
+        $("#nextButton").prop("disabled", currentVideoIndex >= playlist.length - 1);
+    }
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function () {
+            $('#playlist').html('<br><br><div class="spinner"><div></div><div></div><div></div><div></div><div></div></div>');
+        getPlaylists();
+        });
+
+
+        $('#playlist').on('click', '.playButton', function () {
+    // Remove 'clicked' class from all buttons
+            $('.searchitem').removeClass('active1');
+            $('.playlistitem').removeClass('active1');
+
+            // Add 'clicked' class to the clicked button
+            var parent2 = $(this).parent().parent();
+            parent2.addClass('active1');
+    });
+
+
+
+
+
+
+
+
+
+    function updateUI(vid) {
+        $('.searchitem').removeClass('active1');
+        $('.playlistitem').removeClass('active1');
+        $('#plitem' + vid).addClass('active1');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    var volumeSlider;
+
+    function onYouTubeIframeAPIReady() {
+        volumeSlider = document.getElementById('volumeSlider');
+        volumeSlider.addEventListener('input', function () {
+            var volume = volumeSlider.value;
+            setVolume(volume);
+        });
+    }
+
+    function setVolume(volume) {
+        if (player) {
+            player.setVolume(volume);
+        }
+    }
+
+
+
+    </script>
+
+
+
+
+    <script>
+
+        function Authenticate() {
+            const clientId = '770381014466-2rnd8srpdq5o41t7ur3gtkk4hnqpcv6b.apps.googleusercontent.com';
+            const redirectUri = 'https://localhost:44365';
+            const scope = 'https://www.googleapis.com/auth/youtube.force-ssl';
+            const responseType = 'token';
+            const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+            window.location.href = url;
+            console.log('Authenticated');
+        }
+
+
+
+        // Function to get the access token from the URL
+        function getAccessTokenFromUrl() {
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            return urlParams.get('access_token');
+        }
+
+        // Check for access token in URL and log it
+        const accessToken = getAccessTokenFromUrl();
+        if (accessToken) {
+            console.log('Access Token:', accessToken);
+            // Save access token to local storage for later use
+            localStorage.setItem('accessToken', accessToken);
+
+            alert('authenticated');
+        }
+
+
+
+        console.log('working');
+        fetchSubscriptions(localStorage.getItem('accessToken'));
+
+        const ins = document.getElementById('ins');
+        ins.onclick = () => {
+            var videoID = document.getElementById('videoID').value;
+            insertIntoPlaylist(videoID);
+            alert('inserted successfully');
+        }
+
+
+
+
+
+
+        function insertIntoPlaylist(videoId) {
+            var playlistID = 'PLeu1Y9jnYJTLHA2osuFWihy04XrAI_8Bf';
+            const savedAccessToken = localStorage.getItem('accessToken');
+            if (savedAccessToken) {
+                // Call the YouTube API to insert an item into a playlist
+                const request = new XMLHttpRequest();
+                request.open(
+                    'POST',
+                    'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet',
+                    true
+                );
+                request.setRequestHeader('Authorization', 'Bearer ' + savedAccessToken);
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.onload = () => {
+                    if (request.status === 200) {
+                        console.log('Item added to playlist');
+                        refreshPlaylist(); // Call refreshPlaylist function after item added
+                    } else {
+                        console.log('Error: ' + request.statusText);
+                    }
+                };
+                request.send(
+                    JSON.stringify({
+                        snippet: {
+                            playlistId: playlistID,
+                            resourceId: {
+                                kind: 'youtube#video',
+                                videoId: videoId
+                            }
+                        }
+                    })
+                );
+            }
+
+            else {
+                alert('authenticate');
+            }
+        }
+
+
+
+
+
+        function deleteFromPlaylist(videoId) {
+            const playlistItemId = videoId; // Assuming videoId is the playlist item ID
+            const savedAccessToken = localStorage.getItem('accessToken');
+            if (savedAccessToken) {
+                // Call the YouTube API to delete an item from a playlist
+                const request = new XMLHttpRequest();
+                request.open(
+                    'DELETE',
+                    `https://www.googleapis.com/youtube/v3/playlistItems?id=${playlistItemId}`,
+                    true
+                );
+                request.setRequestHeader('Authorization', 'Bearer ' + savedAccessToken);
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.onload = () => {
+                    if (request.status === 204) {
+                        console.log('Item deleted from playlist');
+                    } else {
+                        console.log('Error: ' + request.statusText);
+                    }
+                    // Call refreshPlaylist function after a delay of 10 seconds
+                    setTimeout(refreshPlaylist, 7000);
+                };
+                request.send();
+            } else {
+                alert('Authenticate');
+            }
+        }
+
+
+
+        // Function to fetch subscriptions using the access token
+        function fetchSubscriptions(accessToken, nextPageToken = null) {
+            const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videoCategoryId=10&regionCode=IN&maxResults=50`;
+
+            fetch(apiUrl, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const videos = data.items;
+                    const videoList = document.getElementById('video-list');
+
+                    videos.forEach(video => {
+                        const title = video.snippet.title;
+                        const videoId = video.id;
+                        const thumbnailUrl = video.snippet.thumbnails.default.url;
+
+                        var subs = '<li><div class="card1"><div class="subArt-container d-flex align-items-center"><button style="height:100%;background:transparent;outline:none;border:none;" onclick="pl(\'https://www.youtube.com/watch?v=' + videoId + '\')"><img src="' + thumbnailUrl + '" class="subArt"></button></div></div></li>';
+                        $('#subscriptions').append(subs);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+            console.log('fetchSubscriptions called');
+        }
+
+
+
+
+        function getUserInfo123(accessToken) {
+            fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const channel = data.items[0]; // Assuming the user only has one channel
+                    const channelTitle = channel.snippet.title;
+                    const channelThumbnailUrl = channel.snippet.thumbnails.default.url;
+
+                    var paragraph = document.getElementById('name');
+                    paragraph.textContent = channelTitle;
+
+                    var img12 = document.getElementById('dp');
+                    img12.src = channelThumbnailUrl;
+                })
+                .catch(error => {
+                    console.error('Error fetching user info:', error);
+                });
+        }
+    </script>
+
+
+    <script>
+
+        function addCurrentActivity(playingVideoID, playingVideoThumbnailUrl, playingVideoName) {
+            if (!currentActivity.includes(playingVideoID)) {
+                currentActivity[currentActivityIndex] = playingVideoID;
+                currentActivityIndex++;
+                var truncatedVideoName;
+                if (playingVideoName.length > 50) {
+                    truncatedVideoName = playingVideoName.substring(0, 50) + '...';
+                }
+                else {
+                    truncatedVideoName = playingVideoName;
+                }
+                var activityHTML = '<tr><td class="col1"><button onclick="pl(\'https://www.youtube.com/watch?v=' + playingVideoID + '\')" style="width:44px;padding:0;background-color:transparent;border:none;outline:none;"><img src="' + playingVideoThumbnailUrl + '" height="40" width="40"></button></td><td class="truncate-text col2">' + truncatedVideoName + '</td></tr>';
+                $('#recentActivity').prepend(activityHTML);
+            }
+        }
+
+
+
+
+        function getPlaylists() {
+            accessToken369 = localStorage.getItem('accessToken');
+            // Make a request to the YouTube Data API to retrieve playlists
+            fetch('https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true', {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken369,
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Process the response
+                    var pllist = '';
+                    var playlistsxyz = data.items;
+                    var y = 0;
+                    if (playlistsxyz) {
+                        for (var i = 0; i < playlistsxyz.length; i++) {
+                            var playlist = playlistsxyz[i];
+                            console.log(playlist.snippet.title);
+                            var pid = playlist.id;
+                            var checkedAttribute = (y === 0) ? 'checked' : ''; // Add checked attribute for the first tab
+                            pllist += '<div class="tabby-tab"><input type="radio" id="tab-' + y + '" name="tabby-tabs" ' + checkedAttribute + '><label for="tab-' + y + '">' + playlist.snippet.title + '</label><div class="tabby-content"><div class="listContainer" style="overflow-y: scroll; height: 100%;"><ul class="songList" id="playlist' + y + '"><br><br><div class="spinner"><div></div><div></div><div></div><div></div><div></div></div></ul></div></div></div>';
+
+                            y++;
+                            console.log(pid);
+                            // Fetch and display playlist contents
+                            fetchAndDisplayPlaylist(pid, y - 1); // Pass playlist ID and index
+                        }
+                    } else {
+                        console.log('No playlists found.');
+                    }
+                    $(pllist).insertBefore('#playlistTabs .tabby-tab:first');
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function fetchAndDisplayPlaylist(playlistId, index) {
+            var i = 0;
+            var playlistHtml = '';
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '/Fait/playlist',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { playlistID: playlistId },
+                    success: function (data) {
+
+                        playlist = playlist.concat(data);
+                        togglePrevButton();
+                        toggleNextButton();
+                        $.each(data, function (index, video) {
+                            var VideoID = video.VideoId;
+
+                            playlistHtml += '<li id="plitem' + i + '"><div class="article-card"><div class="content"><p class="title">' + video.VideoTitle + '</p><div class="d-flex"><p class="date">' + video.ChannelName + '</p><button onclick="pl(\'https://www.youtube.com/watch?v=' + VideoID + '\')" class="playButton"><svg xmlns="http://www.w3.org/2000/svg" style="transform:translateY(-1px); height:100%;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div><div class="image-container"><img src="'+ video.ThumbnailUrl +'" alt="article-cover" /><div class="image-tint"></div></div></div></li>';
+                            i++;
+                        });
+                        $("#playlist" + index).html(playlistHtml);
+                        resolve();
+                    },
+                    error: function (xhr, status, error) {
+                        reject(error);
+                    }
+                }).always(function () {
+                    $('#playlist' + index + ' .spinner').remove();
+                });
+            });
+        }
+
+
+
+    </script>
+
+
+
+
+    <!------------------popular playlist------------------->
+
+    <script>
+        // Replace 'YOUR_OAUTH_TOKEN' with your actual OAuth token
+        const OAUTH_TOKEN = localStorage.getItem('accessToken');
+        const REGION_CODE = 'IN';
+        var popPlaylist = '';
+
+        // Function to fetch popular Indian music playlists by genre
+        async function fetchIndianPlaylistsByGenre(genre) {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=playlist&q=${genre}+music+India&maxResults=4&regionCode=${REGION_CODE}`, {
+                    headers: {
+                        'Authorization': `Bearer ${OAUTH_TOKEN}`
+                    }
+                });
+                const data = await response.json();
+                let playlists = data.items;
+
+                // Shuffle the playlists array
+                playlists = shuffle(playlists);
+
+                playlists.forEach(playlist => {
+                    var playlistTitle = playlist.snippet.title;
+                    const playlistId = playlist.id.playlistId;
+                    const playlistThumbnail = playlist.snippet.thumbnails.default.url;
+
+                    if (playlistTitle.length > 40) {
+                        playlistTitle = playlistTitle.substring(0, 40) + '..';
+                    }
+
+                    popPlaylist = '<li><div class="card2"><img class="plImg" src="' + playlistThumbnail + '"><div style="height: 100%;"><p class="plName">' + playlistTitle + '</p><button class="plPlay"><svg xmlns="http://www.w3.org/2000/svg" style="height:20px;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div></li>';
+                    $('#popularPlaylist').append(popPlaylist);
+                });
+            } catch (error) {
+                console.error('Error fetching playlists:', error);
+            }
+            console.log('fetchIndianPlaylistsByGenre called');
+        }
+
+        // Function to shuffle an array
+        function shuffle(array) {
+            let currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (currentIndex !== 0) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+
+        function lengthDef() {
+            var card1 = document.getElementsByClassName('sublist')[0]; // Access the first element in the collection
+            var card2Ele = document.getElementsByClassName('card2');
+
+            // Convert the width string to a number and double it
+            var newWidth = ((card1.getBoundingClientRect().height - 20) * 2 + 10);
+
+            for (var i = 0; i < card2Ele.length; i++) {
+                card2Ele[i].style.width = newWidth + 'px';
+            }
+
+            
+            console.log('lengthDef called');
+        }
+        const genres = ['Bollywood', 'Hindi', 'Marathi', 'Punjabi'];
+        genres.forEach(genre => {
+            fetchIndianPlaylistsByGenre(genre);
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
