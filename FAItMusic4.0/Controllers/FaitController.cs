@@ -17,7 +17,7 @@ namespace FAItMusic4._0.Controllers
     {
 
 
-        string apiKey = "AIzaSyC5xyUtINk9c4tUnE32yKb5Lo0IR8NFJw0";
+        string apiKey = "AIzaSyAfbipEyPDsczyp4P-ZvBLwmkPxk6PzjcM";
         // GET: FAIt
         public ActionResult Index()
         {

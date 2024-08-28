@@ -9,13 +9,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Content/css/player.css">
-    <link rel="stylesheet" href="~/Content/css/style1.css">
-    
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="~/Content/img/Designer (1).png" />
     <title>FAIt Music</title>
@@ -27,9 +25,16 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255,255,255,0.1);
             transition: 0.10s ease-in-out;
-            padding:0;
-            height:60px;
-            width:60px;
+            padding: 0;
+            height: 60px;
+            width: 60px;
+        }
+
+        #playPauseButton {
+            background-color: #467d91;
+            height: 75px;
+            width: 75px;
+            transform: translateY(-8px);
         }
 
         .controlBtn:hover {
@@ -39,231 +44,221 @@
         .controlBtn:active {
             transform: scale(0.9);
         }
+
+        #playPauseButton:active{
+            transform: translateY(-8px) scale(0.9);
+        }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
         <div class="logo-details">
-            <img src="~/Content/img/Designer (1).png" class="icon" width="40"/>
+            <img src="~/Content/img/Designer (1).png" class="icon" />
             <div class="logo_name">FAIt Music</div>
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
             <li>
                 <a href="#">
-                    <i class='bx bx-home-alt'></i>
+                    <i class='bx bxs-home'></i>
                     <span class="links_name">Home</span>
                 </a>
                 <span class="tooltip">Home</span>
             </li>
             <li>
                 <a onclick="Authenticate();">
-                    <i class='bx bx-user'></i>
+                    <i class='bx bxl-google'></i>
                     <span class="links_name">Log In</span>
                 </a>
                 <span class="tooltip">Log In</span>
             </li>
             <li>
                 <a href="#">
-                    <center><i class='bx bxl-facebook'></i></center>
-                    <span class="links_name">Facebook</span>
+                    <i class='bx bxs-compass'></i>
+                    <span class="links_name">Discover</span>
                 </a>
-                <span class="tooltip">Facebook</span>
+                <span class="tooltip">Discover</span>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxl-instagram'></i>
-                    <span class="links_name">Instagram</span>
+                    <i class='bx bxs-playlist'></i>
+                    <span class="links_name">Playlists</span>
                 </a>
-                <span class="tooltip">Instagram</span>
+                <span class="tooltip">Playlists</span>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxl-snapchat'></i>
-                    <span class="links_name">Snapchat</span>
+                    <i class='bx bxs-music'></i>
+                    <span class="links_name">Genres</span>
                 </a>
-                <span class="tooltip">Snapchat</span>
+                <span class="tooltip">Genres</span>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxl-linkedin'></i>
-                    <span class="links_name">Linked In</span>
+                    <i class='bx bx-podcast'></i>
+                    <span class="links_name">Podcasts</span>
                 </a>
-                <span class="tooltip">Linked In</span>
+                <span class="tooltip">Podcasts</span>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxl-github'></i>
-                    <span class="links_name">Github</span>
+                    <i class='bx bxs-radio'></i>
+                    <span class="links_name">Radio</span>
                 </a>
-                <span class="tooltip">Github</span>
+                <span class="tooltip">Radio</span>
+            </li>
+            <li>
+                <div id="player"></div>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <a href="#">
+                        <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log Out</span>
+                    </a>
+                    <span class="tooltip">Log Out</span>
+                </div>
             </li>
         </ul>
-        <div id="player"></div>
     </div>
-
     <section class="home-section">
 
-            <div class="container-fluid">
+        <div class="container-fluid" style="height:100%;">
+            <div class="row" style="height:100vh;padding: 0 10px 10px 0px;">
+                <div class="col-lg-9 leftCol">
+                    <div class="container-fluid topMost">
+                        <div class="row" style="margin: 0; height: 100%;">
 
-                <div class="row">
 
-                    <div class="col-lg-9 row1">
-
-                        <div class="row">
-
-                            <div class="col-lg-12 topmost">
-
-                                <div class="row" style="margin: 0; height: 100%;">
-
-                                    <div class="col-lg-4" style="padding: 0;">
-
-                                        <div class="container-fluid scontainer flex" style="transform: translateX(-11px);">
-                                            <form id="searchForm" style="display: contents; ">
-                                                <input type="text" placeholder="Search" id="searchTerm" class="searchBox" autocomplete="off"><button type="submit" class="searchButton"><i class='bx bx-search-alt icon'></i></button>
-                                            </form>
-                                            
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-4 offset-lg-4 info" style="height: 100%;">
-                                        <div class="dpContainer flex">
-                                            <div class="pimgContainer">
-                                                <img class="dp" id="dp" src="~/Content/img/Designer (1).png">
-                                            </div>
-                                            <p class="userName" id="name">UserName</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                            <div class="col-4" style="padding: 0;">
+                                <form id="searchForm" style="display: flex; height:100%;">
+                                    <input type="text" placeholder="Search" id="searchTerm" class="searchBox" autocomplete="off"><button type="submit" class="searchButton"><i class='bx bx-search-alt icon'></i></button>
+                                </form>
                             </div>
-
-
-                            <div class="col-lg-12 top">
-
-                                <div class="container-fluid topContainer">
-                                    <div class="subList123">
-                                        <ul class="pListContainer" id="popularPlaylist">
-                                            
-                                        </ul>
-                                    </div>
+                            
+                            <div class="col-4 offset-4 info" style="height: 100%;">
+                                <div class="pimgContainer">
+                                    <img class="dp" id="dp" src="~/Content/img/Designer (1).png">
                                 </div>
-
+                                <p class="userName" id="name">UserName</p>
                             </div>
-
-
-                            <div class="col-lg-12 mid">
-
-                                <div class="container-fluid midContainer">
-                                    <div class="subList123">
-                                        <ul class="sublist" id="subscriptions">
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-lg-12 btm">
-
-                                <div class="container-fluid btmContainer">
-                                    <div class="tabcontainer">
-                                        <div class="tabs" id="playlistTabs">
-                                            <div class="tabby-tab"><input type="radio" id="tab-69" name="tabby-tabs"><label for="tab-69">Search Results</label><div class="tabby-content"><div class="listContainer" style="overflow-y: scroll; height: 100%;margin-top:20px;"><ul class="songList" id="searchResults"></ul></div></div></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
 
                         </div>
-
                     </div>
 
-                    <div class="col-lg-3 row2" style="padding: 0;">
-
-                        <div class="col-lg-12 list">
-
-                            <div class="container-fluid listContainer">
-                                <div class="tbl-header">
-                                    <table cellpadding="0" cellspacing="0" border="0">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2"><center>Recently Played</center></th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                                <div class="tbl-content">
-                                    <table cellpadding="0" cellspacing="0" border="0">
-                                        <tbody id="recentActivity">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
+                    <div class="container-fluid top">
+                        <div class="container-fluid subContainer">
+                            <ul class="pListContainer" id="popularPlaylist">
+                                <li><div class="card2"></div></li>
+                                <li><div class="card2"></div></li>
+                                <li><div class="card2"></div></li>
+                                <li><div class="card2"></div></li>
+                            </ul>
                         </div>
-
-                        <div class="col-lg-12 player">
-
-                            <div class="container-fluid playerContainer">
-                                <div class="player123">
-
-                                    <div class="container" style="height: 36%;">
-                                        <div class="center">
-                                            <img class="album" src="~/Content/img/Designer (1).png" id="thumbnail">
-                                        </div>
-                                    </div>
-
-                                    <div class="container" style="height: 25%; display: flex; justify-content: center; text-align: center; align-items: center;">
-                                        <div class="song_details">
-                                            <div style="font-size: 2vh;" id="title">No Song<br />Playing</div>
-                                            <div style="margin-top: 7px; font-size: 2vh; " id="channel">---</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="container" style="height:35%; display: flex; justify-content: center; text-align: center; align-items: center;">
-                                        <div class="slider">
-                                            <div class="time">
-                                                <div id="currentTime">0:00</div>
-                                                <div id="totalDuration">0:00</div>
-                                            </div>
-                                            <input type="range" min="0" max="100" value="0" step="1" class="slider123" id="seekSlider" />
-
-                                            <div class="controls">
-
-                                                <button class="controlBtn" id="prevButton" onclick="playPreviousVideo()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M20.24 7.22v9.57c0 1.96-2.13 3.19-3.83 2.21l-4.15-2.39-4.15-2.4c-1.7-.98-1.7-3.43 0-4.41l4.15-2.4 4.15-2.39c1.7-.98 3.83.24 3.83 2.21ZM3.76 18.18V5.82" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                                </button>
-
-                                                <button class="controlBtn" id="playPauseButton" style="background-color: #467d91;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2.0" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                                </button>
-
-                                                <button class="controlBtn" id="nextButton" onclick="playNextVideo()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3.76 7.22v9.57c0 1.96 2.13 3.19 3.83 2.21l4.15-2.39 4.15-2.4c1.7-.98 1.7-3.43 0-4.41l-4.15-2.4-4.15-2.39c-1.7-.98-3.83.24-3.83 2.21ZM20.24 18.18V5.82" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
                     </div>
 
+                        <div class="container-fluid mid">
+                            <div class="container-fluid popContainer">
+                                <ul class="sublist" id="subscriptions">
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                    <li><div class="card1"></div></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid btm">
+                            <div class="container-fluid bContainer">
+                                <div class="tabcontainer">
+                                    <div class="tabs" id="playlistTabs">
+                                        <div class="tabby-tab"><input type="radio" id="tab-69" name="tabby-tabs"><label for="tab-69">Search Results</label><div class="tabby-content"><div class="listContainer" style="overflow-y: scroll; height: 100%;"><ul class="songList" id="searchResults"></ul></div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 rightCol">
+                    <div class="container-fluid playerC">
+                        <div class="container-fluid pContainer">
+                            <div class="player123">
+
+                                <div class="container" style="height: 36%;">
+                                    <div class="center">
+                                        <img class="album" src="~/Content/img/Designer (1).png" id="thumbnail">
+                                    </div>
+                                </div>
+
+                                <div class="container" style="height: 25%; display: flex; justify-content: center; text-align: center; align-items: center;">
+                                    <div class="song_details">
+                                        <div style="font-size: 16px;" id="title">No Song<br />Playing</div>
+                                        <div style="margin-top: 7px; font-size: 14px; " id="channel">---</div>
+                                    </div>
+                                </div>
+
+                                <div class="container" style="height:35%; display: flex; justify-content: center; text-align: center; align-items: center;">
+                                    <div class="slider">
+                                        <div class="time">
+                                            <div id="currentTime">0:00</div>
+                                            <div id="totalDuration">0:00</div>
+                                        </div>
+                                        <input type="range" min="0" max="100" value="0" step="1" class="slider123" id="seekSlider" />
+
+                                        <div class="controls">
+
+                                            <button class="controlBtn" id="prevButton" onclick="playPreviousVideo()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M20.24 7.22v9.57c0 1.96-2.129 3.19-3.829 2.21l-4.15-2.39-4.15-2.4c-1.7-.98-1.7-3.43 0-4.41l4.15-2.4 4.15-2.39c1.7-.98 3.83.24 3.83 2.21Z" fill="#ffffff"></path><path d="M3.762 18.93c-.41 0-.75-.34-.75-.75V5.82c0-.41.34-.75.75-.75s.75.34.75.75v12.36c0 .41-.34.75-.75.75Z" fill="#ffffff"></path></svg>
+                                            </button>
+
+                                            <button class="controlBtn" id="playPauseButton">
+                                                <svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M18.7 8.98 4.14 17.71c-.09-.33-.14-.68-.14-1.04V7.33c0-3.08 3.33-5 6-3.46l4.04 2.33 4.05 2.34c.22.13.43.27.61.44Z" fill="#ffffff"></path><path opacity=".4" d="m18.089 15.46-4.05 2.34-4.04 2.33c-1.91 1.1-4.16.44-5.28-1.17l.42-.25 14.44-8.66c1 1.8.51 4.26-1.49 5.41Z" fill="#ffffff"></path></svg>
+                                            </button>
+
+                                            <button class="controlBtn" id="nextButton" onclick="playNextVideo()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M3.762 7.22v9.57c0 1.96 2.13 3.19 3.83 2.21l4.15-2.39 4.15-2.4c1.7-.98 1.7-3.43 0-4.41l-4.15-2.4-4.15-2.39c-1.7-.98-3.83.24-3.83 2.21Z" fill="#ffffff"></path><path d="M20.238 18.93c-.41 0-.75-.34-.75-.75V5.82c0-.41.34-.75.75-.75s.75.34.75.75v12.36c0 .41-.33.75-.75.75Z" fill="#ffffff"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid listC">
+                        <div class="container-fluid lContainer">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2"><center>Recently Played</center></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tbody id="recentActivity">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
+        </div>
+
     </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="~/Content/js/script1.js"></script>
+    <script src="~/Content/js/script.js"></script>
 
     <script>
 
@@ -281,7 +276,7 @@
         })
 
 
-        
+
 
 
         const input = document.getElementById("volumeSlider");
@@ -311,18 +306,6 @@
         }
     </script>
 
-
-    <script>
-        var card1 = document.getElementsByClassName('sublist')[0]; // Access the first element in the collection
-        var card2Ele = document.getElementsByClassName('card2');
-
-        // Convert the width string to a number and double it
-        var newWidth = ((card1.getBoundingClientRect().height - 20) * 2 + 10);
-
-        for (var i = 0; i < card2Ele.length; i++) {
-            card2Ele[i].style.width = newWidth + 'px';
-        }
-    </script>
 
 
 
@@ -393,10 +376,10 @@
 
 
         $(document).ready(function () { // Fetch playlist data and store it in the global variable
-            if (!localStorage.getItem('accessToken')) {
+            if (localStorage.getItem('accessToken') == null || !localStorage.getItem('accessToken')) {
                 Authenticate();
                 alert('authenticated');
-                
+
                 fetchSubscriptions(localStorage.getItem('accessToken'));
 
 
@@ -431,7 +414,7 @@
                         videoId: videoId,
                         playerVars: {
                             autoplay: 1,
-                            controls: 1
+                            controls: 0
                         },
                         events: {
                             'onReady': onPlayerReady,
@@ -491,9 +474,9 @@
 
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.PLAYING) {
-                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="27" height="27" viewBox="0 0 24 24" fill="none"><path d="M10.65 19.11V4.89c0-1.35-.57-1.89-2.01-1.89H5.01C3.57 3 3 3.54 3 4.89v14.22C3 20.46 3.57 21 5.01 21h3.63c1.44 0 2.01-.54 2.01-1.89ZM21 19.11V4.89C21 3.54 20.43 3 18.99 3h-3.63c-1.43 0-2.01.54-2.01 1.89v14.22c0 1.35.57 1.89 2.01 1.89h3.63c1.44 0 2.01-.54 2.01-1.89Z" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(1px, 0px);" width="27" height="27" viewBox="0 0 24 24" fill="none"><path d="M10.65 19.11V4.89c0-1.35-.57-1.89-2.01-1.89H5.01C3.57 3 3 3.54 3 4.89v14.22C3 20.46 3.57 21 5.01 21h3.63c1.44 0 2.01-.54 2.01-1.89Z" fill="#ffffff"></path><path opacity=".4" d="M21.002 19.11V4.89c0-1.35-.57-1.89-2.01-1.89h-3.63c-1.43 0-2.01.54-2.01 1.89v14.22c0 1.35.57 1.89 2.01 1.89h3.63c1.44 0 2.01-.54 2.01-1.89Z" fill="#ffffff"></path></svg>';
             } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(2px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2.0" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+                playPauseButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" style="transform: translate(2px, 0px);" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M18.7 8.98 4.14 17.71c-.09-.33-.14-.68-.14-1.04V7.33c0-3.08 3.33-5 6-3.46l4.04 2.33 4.05 2.34c.22.13.43.27.61.44Z" fill="#ffffff"></path><path opacity=".4" d="m18.089 15.46-4.05 2.34-4.04 2.33c-1.91 1.1-4.16.44-5.28-1.17l.42-.25 14.44-8.66c1 1.8.51 4.26-1.49 5.41Z" fill="#ffffff"></path></svg>';
             }
 
             if (event.data == YT.PlayerState.PLAYING) {
@@ -564,7 +547,7 @@
                 var videoThumbnail = item.videoThumbnail;
                 var videoID = item.videoID;
                 // Construct HTML markup for each search result
-                var resultHtml = '<li id="seitem' + x + '"><div class="article-card"><div class="content"><p class="title">' + videoTitle + '</p><div class="d-flex"><p class="date">' + videoChannel + '</p><button data-url="' + videoUrl + '" data-index="' + x + '" class="playCard"><svg xmlns="http://www.w3.org/2000/svg" style="transform:translateY(-1px); height:100%;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div><div class="image-container"><img src="' + videoThumbnail +'" alt="article-cover" /><div class="image-tint"></div></div></div></li>';
+                var resultHtml = '<li id="seitem' + x + '">    <div class="card"><p class="songName">' + videoTitle + '</p><p class="songChannel">' + videoChannel + '</p><div class="background"><img class="songThumbnail" src="' + videoThumbnail + '"><div class="image-tint"></div></div><button class="playCard" data-url="' + videoUrl + '" data-index="' + x + '" ><div class="box box3"> <span class="icon"><svg class="svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M18.7 8.98 4.14 17.71c-.09-.33-.14-.68-.14-1.04V7.33c0-3.08 3.33-5 6-3.46l4.04 2.33 4.05 2.34c.22.13.43.27.61.44Z" fill="#FFF"></path><path opacity=".4" d="m18.089 15.46-4.05 2.34-4.04 2.33c-1.91 1.1-4.16.44-5.28-1.17l.42-.25 14.44-8.66c1 1.8.51 4.26-1.49 5.41Z" fill="#FFF"></path></svg></span></div></button></div></li>';
             // Append the HTML markup to the search results container
                 $('#searchResults').append(resultHtml);
                 x++;
@@ -705,7 +688,7 @@
     <script>
 
         function Authenticate() {
-            const clientId = '770381014466-2rnd8srpdq5o41t7ur3gtkk4hnqpcv6b.apps.googleusercontent.com';
+            const clientId = '359365603873-apuri2ngjlfifdmkfs3h1ukllk3hkn6b.apps.googleusercontent.com';
             const redirectUri = 'https://localhost:44365';
             const scope = 'https://www.googleapis.com/auth/youtube.force-ssl';
             const responseType = 'token';
@@ -825,7 +808,7 @@
         // Function to fetch subscriptions using the access token
         function fetchSubscriptions(accessToken, nextPageToken = null) {
             const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videoCategoryId=10&regionCode=IN&maxResults=50`;
-
+            
             fetch(apiUrl, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -836,15 +819,17 @@
                 .then(data => {
                     const videos = data.items;
                     const videoList = document.getElementById('video-list');
+                    if (videos) {
+                        $('#subscriptions').empty();
+                        videos.forEach(video => {
+                            const title = video.snippet.title;
+                            const videoId = video.id;
+                            const thumbnailUrl = video.snippet.thumbnails.default.url;
 
-                    videos.forEach(video => {
-                        const title = video.snippet.title;
-                        const videoId = video.id;
-                        const thumbnailUrl = video.snippet.thumbnails.default.url;
-
-                        var subs = '<li><div class="card1"><div class="subArt-container d-flex align-items-center"><button style="height:100%;background:transparent;outline:none;border:none;" onclick="pl(\'https://www.youtube.com/watch?v=' + videoId + '\')"><img src="' + thumbnailUrl + '" class="subArt"></button></div></div></li>';
-                        $('#subscriptions').append(subs);
-                    });
+                            var subs = '<li><div class="card1"><div class="subArt-container d-flex align-items-center"><button style="height:100%;background:transparent;outline:none;border:none;" onclick="pl(\'https://www.youtube.com/watch?v=' + videoId + '\')"><img src="' + thumbnailUrl + '" class="subArt"></button></div></div></li>';
+                            $('#subscriptions').append(subs);
+                        });
+                    }
                 })
                 .catch(error => console.error('Error fetching data:', error));
             console.log('fetchSubscriptions called');
@@ -866,7 +851,7 @@
                     const channelThumbnailUrl = channel.snippet.thumbnails.default.url;
 
                     var paragraph = document.getElementById('name');
-                    paragraph.textContent = channelTitle;
+                    paragraph.textContent = 'Welcome, ' + channelTitle;
 
                     var img12 = document.getElementById('dp');
                     img12.src = channelThumbnailUrl;
@@ -952,7 +937,7 @@
                         $.each(data, function (index, video) {
                             var VideoID = video.VideoId;
 
-                            playlistHtml += '<li id="plitem' + i + '"><div class="article-card"><div class="content"><p class="title">' + video.VideoTitle + '</p><div class="d-flex"><p class="date">' + video.ChannelName + '</p><button onclick="pl(\'https://www.youtube.com/watch?v=' + VideoID + '\')" class="playButton"><svg xmlns="http://www.w3.org/2000/svg" style="transform:translateY(-1px); height:100%;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div><div class="image-container"><img src="'+ video.ThumbnailUrl +'" alt="article-cover" /><div class="image-tint"></div></div></div></li>';
+                            playlistHtml += '<li id="plitem' + i + '"><div class="card"><p class="songName">' + video.VideoTitle + '</p><p class="songChannel">' + video.ChannelName + '</p><div class="background"><img class="songThumbnail" src="' + video.ThumbnailUrl + '"><div class="image-tint"></div></div><button onclick="pl(\'https://www.youtube.com/watch?v=' + VideoID + '\')"><div class="box box3"> <span class="icon"><svg class="svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M18.7 8.98 4.14 17.71c-.09-.33-.14-.68-.14-1.04V7.33c0-3.08 3.33-5 6-3.46l4.04 2.33 4.05 2.34c.22.13.43.27.61.44Z" fill="#FFF"></path><path opacity=".4" d="m18.089 15.46-4.05 2.34-4.04 2.33c-1.91 1.1-4.16.44-5.28-1.17l.42-.25 14.44-8.66c1 1.8.51 4.26-1.49 5.41Z" fill="#FFF"></path></svg></span></div></button></div></li>';
                             i++;
                         });
                         $("#playlist" + index).html(playlistHtml);
@@ -996,18 +981,21 @@
                 // Shuffle the playlists array
                 playlists = shuffle(playlists);
 
-                playlists.forEach(playlist => {
-                    var playlistTitle = playlist.snippet.title;
-                    const playlistId = playlist.id.playlistId;
-                    const playlistThumbnail = playlist.snippet.thumbnails.default.url;
+                if (playlists) {
+                    $('#popularPlaylist').empty();
+                    playlists.forEach(playlist => {
+                        var playlistTitle = playlist.snippet.title;
+                        const playlistId = playlist.id.playlistId;
+                        const playlistThumbnail = playlist.snippet.thumbnails.default.url;
 
-                    if (playlistTitle.length > 40) {
-                        playlistTitle = playlistTitle.substring(0, 40) + '..';
-                    }
+                        if (playlistTitle.length > 40) {
+                            playlistTitle = playlistTitle.substring(0, 40) + '..';
+                        }
 
-                    popPlaylist = '<li><div class="card2"><img class="plImg" src="' + playlistThumbnail + '"><div style="height: 100%;"><p class="plName">' + playlistTitle + '</p><button class="plPlay"><svg xmlns="http://www.w3.org/2000/svg" style="height:20px;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div></li>';
-                    $('#popularPlaylist').append(popPlaylist);
-                });
+                        popPlaylist = '<li><div class="card2"><img class="plImg" src="' + playlistThumbnail + '"><div style="height: 100%;"><p class="plName">' + playlistTitle + '</p><button class="plPlay"><svg xmlns="http://www.w3.org/2000/svg" style="height:20px;color:white;" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12V8.44c0-4.42 3.13-6.23 6.96-4.02l3.09 1.78 3.09 1.78c3.83 2.21 3.83 5.83 0 8.04l-3.09 1.78-3.09 1.78C7.13 21.79 4 19.98 4 15.56V12Z" stroke="#FFF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>&nbsp;Play</button></div></div></li>';
+                        $('#popularPlaylist').append(popPlaylist);
+                    });
+                }
             } catch (error) {
                 console.error('Error fetching playlists:', error);
             }
@@ -1045,7 +1033,7 @@
                 card2Ele[i].style.width = newWidth + 'px';
             }
 
-            
+
             console.log('lengthDef called');
         }
         const genres = ['Bollywood', 'Hindi', 'Marathi', 'Punjabi'];
@@ -1055,6 +1043,26 @@
 
 
 
+    </script>
+
+    <script>
+        document.addEventListener('keydown', function (event) {
+            // Check if the pressed key is 'A'
+            if (event.key === 'p' || event.key === 'P') {
+                // Trigger click event of button 1
+                document.getElementById('playPauseButton').click();
+            }
+
+            else if (event.key === 'a' || event.key === 'A') {
+                // Trigger click event of button 2
+                document.getElementById('prevButton').click();
+            }
+
+            else if (event.key === 'd' || event.key === 'D') {
+                // Trigger click event of button 2
+                document.getElementById('nextButton').click();
+            }
+        });
     </script>
 
 </body>

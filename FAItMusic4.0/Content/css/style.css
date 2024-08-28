@@ -16,6 +16,7 @@
     --primary-color-light: #d3a1ab;
     --toggle-color: #ddd;
     --text-color: #707070;
+    --border-radius:25px;
     /* ====== Transition ====== */
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
@@ -40,19 +41,17 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh;
-    width: 87px;
-    padding: 6px 18px;
+    height: 100%;
+    width: 78px;
+    background: transparent;
+    padding: 6px 14px;
+    z-index: 99;
     transition: all 0.5s ease;
-    border-radius: 35px;
-    background-color: rgba(255,255,255,0.06);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
 }
 
     .sidebar.open {
-        width: 259px;
+        width: 250px;
     }
 
     .sidebar .logo-details {
@@ -78,14 +77,12 @@ body {
     .sidebar.open .logo-details .icon,
     .sidebar.open .logo-details .logo_name {
         opacity: 1;
-        margin-right:19px;
-        border-radius:50%;
     }
 
     .sidebar .logo-details #btn {
         position: absolute;
         top: 50%;
-        right: -1px;
+        right: 0;
         transform: translateY(-50%);
         font-size: 22px;
         transition: all 0.4s ease;
@@ -99,7 +96,7 @@ body {
         text-align: right;
     }
 
-    .sidebar i {
+    .sidebar i, .sidebar img {
         color: #fff;
         height: 60px;
         min-width: 50px;
@@ -110,8 +107,8 @@ body {
 
     .sidebar .nav-list {
         margin-top: 20px;
-        padding-left: 0;
         height: 100%;
+        padding-left:0;
     }
 
     .sidebar li {
@@ -142,7 +139,6 @@ body {
             pointer-events: auto;
             transition: all 0.4s ease;
             top: 50%;
-            z-index: 3;
             transform: translateY(-50%);
         }
 
@@ -169,6 +165,26 @@ body {
         width: 100%;
     }
 
+    .sidebar .bx-search {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        background: #1d1b31;
+        color: #FFF;
+    }
+
+    .sidebar.open .bx-search:hover {
+        background: #1d1b31;
+        color: #FFF;
+    }
+
+    .sidebar .bx-search:hover {
+        background: #FFF;
+        color: #11101d;
+    }
+
     .sidebar li a {
         display: flex;
         height: 100%;
@@ -181,8 +197,7 @@ body {
     }
 
         .sidebar li a:hover {
-            background: var(--primary-color-light);
-            color:#fff;
+            background: #FFF;
         }
 
         .sidebar li a .links_name {
@@ -216,12 +231,11 @@ body {
     .sidebar li.profile {
         position: fixed;
         height: 60px;
-        border-radius: 0px 0px 35px 35px;
         width: 78px;
         left: 0;
         bottom: -8px;
         padding: 10px 14px;
-        background: #1d1b31;
+        background: transparent;
         transition: all 0.5s ease;
         overflow: hidden;
     }
@@ -290,13 +304,6 @@ body {
     width: calc(100% - 250px);
 }
 
-.home-section .text {
-    display: inline-block;
-    color: #11101d;
-    font-size: 25px;
-    font-weight: 500;
-    margin: 18px
-}
 
 @media (max-width: 420px) {
     .sidebar li .tooltip {
@@ -304,75 +311,102 @@ body {
     }
 }
 
-.topmost {
-    height: 91.09px;
+.leftCol {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.rightCol {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.topMost {
+    height: 85px;
+    padding: 20px 10px 10px 10px;
+    margin: 0;
 }
 
 .top {
-    height: 136.64px;
-    padding: 0px 10px 10px 29px;
+    height: 171.6px;
+    padding: 10px;
+    margin: 0;
+}
+.subContainer {
+    margin: 0;
+    overflow-x: scroll;
+    padding: 0;
+    height: 100%;
+}
+.subContainer::-webkit-scrollbar {
+    height: 0;
 }
 
-    .top .topContainer, .mid .midContainer, .btm .btmContainer, .list .listContainer {
-        height: 100%;
-        width: 100%;
-        background-color: rgba(255,255,255,0.06);
-        border-radius: 35px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 0;
-    }
-
-    .top .topContainer {
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-clip: border-box;
-    }
 
 .mid {
-    height: 198.41px;
-    height: 198.41px;
-    padding: 10px 10px 10px 29px;
+    height: 171.6px;
+    padding: 10px;
+    margin: 0;
+}
+
+.popContainer {
+    margin: 0;
+    overflow-x: scroll;
+    padding:0;
+    height:100%;
+}
+
+.popContainer::-webkit-scrollbar {
+    height: 0;
 }
 
 
 .btm {
-    height: calc(100vh - 426px);
-    padding: 10px 10px 0px 29px;
-}
-
-.list {
-    height: 428.16px;
-    padding: 0px 0px 10px 10px;
-}
-
-    .list .listContainer {
-        border-radius: 35px;
-    }
-
-.player {
     height: calc(100vh - 428px);
-    padding: 10px 0px 0px 10px;
+    padding: 10px;
+    margin: 0;
 }
 
-.playerContainer {
-    height: 100%;
-    width: 100%;
+.bContainer {
     background-color: rgba(255,255,255,0.06);
-    border-radius: 35px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 0;
+    height: 100%;
+    padding:0;
+    border-radius: 35px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.topmost .scontainer {
+.playerC {
+    height: 428px;
+    padding: 10px 0 10px 10px;
+}
+
+.listC {
+    height: calc(100vh - 428px);
+    padding: 10px 0 10px 10px;
+}
+
+.pContainer {
+    background-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
     height: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 29px;
+    padding:0;
+    border-radius: 35px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lContainer {
+    background-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    height: 100%;
+    border-radius: 35px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding:0;
 }
 
 .searchBox {
@@ -381,7 +415,7 @@ body {
     width: 100%;
     background-color: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
-    border-right:0;
+    border-right: 0;
     border-radius: 35px 0px 0px 35px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
@@ -455,7 +489,7 @@ body {
     position: relative;
     display: flex;
     min-height: 100%;
-    border-radius: 35px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 
@@ -480,7 +514,7 @@ body {
         margin-left: 70px;
         margin-right: 70px;
         margin-top: 10px;
-        border-radius: 35px;
+        border-radius: var(--border-radius);
     }
 
         .tabby-tab label:hover {
@@ -496,7 +530,9 @@ body {
     bottom: 0;
     right: 0;
     top: 40px;
-    padding: 20px;
+    padding:0;
+    padding-top: 23px;
+    padding-bottom: 13px;
     border-radius: 0 0 16px 16px;
     background: transparent;
     transition: opacity 0.8s ease,transform 0.8s ease;
@@ -555,7 +591,7 @@ body {
     overflow-x: scroll;
     width: 100%;
     height: 100%;
-    border-radius:35px;
+    border-radius:25px;
 }
 
     .subList123::-webkit-scrollbar {
@@ -577,7 +613,6 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    padding: 10px;
 }
 
     .sublist li {
@@ -589,10 +624,9 @@ body {
 .card1 {
     height: 100%;
     aspect-ratio: 1/1;
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 25px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(30px);
+    border-radius: 35px;
+    background-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1);
     outline: none;
     align-items: center;
@@ -601,7 +635,7 @@ body {
     justify-content: center; /* horizontally center */
     align-items: center;
     padding: 20px;
-    margin-right: 10px;
+    margin-right: 20px;
     transition: 0.15s ease-in;
 }
 
@@ -817,7 +851,6 @@ td {
     margin: 0;
     padding: 0;
     display: flex;
-    padding: 10px;
 }
 
     .pListContainer li {
@@ -826,10 +859,7 @@ td {
 
 .card2 {
     height: 100%;
-    border-radius: 25px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 35px;
     outline: none;
     align-items: center;
     text-align: center;
@@ -837,8 +867,11 @@ td {
     align-items: center;
     padding: 10px;
     transition: 0.15s ease-in;
-    margin-right: 10px;
-    width: calc((161.41px) * 2);
+    margin-right: 20px;
+    width: 323.18px;
+    background-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 
@@ -846,7 +879,7 @@ td {
 
 .plImg {
     height: 100%;
-    border-radius: 15px;
+    border-radius: 25px;
     border: 2px solid var(--primary-color);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
@@ -875,19 +908,110 @@ td {
 }
 
 
-.article-card {
-    width: 230px;
-    height: 170px;
-    border-radius: 25px;
+
+.card {
+    width: 238px;
+    height: 167px;
+    background: transparent;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 300ms;
 }
 
-.image-container {
-    position: relative;
+.icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    transform: translate(-7px,-3px);
+}
+
+    .icon .svg {
+        fill: rgba(255, 255, 255, 0.797);
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+    }
+
+.box {
+    position: absolute;
+    padding: 10px;
+    text-align: right;
+    background-color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
+    box-shadow: rgba(0, 0, 0, 0.1) -7px 7px 29px 0px;
+    transform-origin: bottom left;
+    transition: all 0.25s ease-in-out;
+    z-index: 9;
+}
+
+    .box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .box:hover .svg {
+        fill: white;
+    }
+
+.box3 {
+    width: 30%;
+    height: 30%;
+    bottom: -30%;
+    left: -30%;
+    transition-delay: 0.4s;
+}
+
+    .box3::before {
+        background: #467d91;
+    }
+
+    .box3:hover::before {
+        opacity: 1;
+    }
+
+    .box3:hover .icon .svg {
+        filter: drop-shadow(0 0 5px white);
+    }
+
+.card:hover .box {
+    bottom: -1px;
+    left: -1px;
+}
+
+.card:hover .logo {
+    transform: translate(0, 0);
+    bottom: 20px;
+    right: 20px;
+}
+
+.background {
+    width: 100%;
+}
+
+.songThumbnail {
+    width: 100%;
+    position: absolute;
+    top: 0%;
+}
+
+.songName {
+    z-index: 9;
+    color: #fff;
+    font-size: 11px;
+    margin: 10px;
+    margin-bottom: 0;
+    margin-top: 23px;
+}
+
+.songChannel {
+    z-index: 9;
+    color: #fff;
+    font-size: 10px;
+    margin: 10px;
+    margin-bottom: 0;
 }
 
 .image-tint {
@@ -896,68 +1020,19 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
-    z-index: 1; /* Ensure the tint is behind the text */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
-.content {
-    position: relative;
-    z-index: 2; /* Ensure the text is on top of the tint */
-}
-
-
-.article-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.article-card .content {
-    box-sizing: border-box;
-    width: 100%;
-    position: absolute;
-    padding: 10px;
-    height: auto;
-    bottom: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-}
-
-.article-card .date,
-.article-card .title {
-    margin: 0;
-}
-
-.article-card .date {
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.article-card .title {
-    font-size: 11px;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.playCard  , .playButton{
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background-color: #467d91;
-    border: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 11px;
-}
 
 
 @media screen and (max-width: 985px) {
     .top, .mid, .btm, .list, .player {
         padding: 10px;
-        border-radius: 35px;
+        border-radius: var(--border-radius);
     }
 
         .player .playerContainer, .list .listContainer {
-            border-radius: 35px;
+            border-radius: var(--border-radius);
         }
 }

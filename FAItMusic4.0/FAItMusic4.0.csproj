@@ -163,9 +163,10 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\player.css" />
-    <Content Include="Content\css\style1.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\img\banner.jpg" />
     <Content Include="Content\img\Designer %281%29.png" />
+    <Content Include="Content\img\ethereal-02.jpeg" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\github.svg" />
     <Content Include="Content\img\home.svg" />
@@ -176,7 +177,7 @@
     <Content Include="Content\img\snapchat.svg" />
     <Content Include="Content\img\back.jpg" />
     <Content Include="Content\js\player1.js" />
-    <Content Include="Content\js\script1.js" />
+    <Content Include="Content\js\script.js" />
     <Content Include="Content\js\volslider.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
